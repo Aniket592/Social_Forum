@@ -20,7 +20,7 @@ glb = ""
 
 def signIn(request):
 
-    return render(request, "signIn.html")
+    return render(request, "index.html")
 
 def postsign(request):
     global glb
@@ -34,7 +34,7 @@ def postsign(request):
         user = authe.sign_in_with_email_and_password(email, passw)
     except:
         message = "Invalid Credential"
-        return render(request, "signIn.html", {'mess': message})
+        return render(request, "index.html", {'mess': message})
     print(user['idToken'])
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
@@ -43,7 +43,7 @@ def postsign(request):
 
 def logout(request):
     auth.logout(request);
-    return render(request, "signIn.html")
+    return render(request, "index.html")
 
 def signUp(request):
     return render(request, "signup.html")
@@ -53,7 +53,7 @@ def postsignup(request):
     email = request.POST.get('email')
     passw = request.POST.get('pass')
     user = authe.create_user_with_email_and_password(email, passw)
-    return render(request, "signIn.html")
+    return render(request, "index.html")
 
 
 def send(request):
